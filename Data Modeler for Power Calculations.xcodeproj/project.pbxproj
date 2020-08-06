@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		817B382824DB2ED30004CEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B382724DB2ED30004CEC0 /* AppDelegate.swift */; };
+		817B382A24DB2ED30004CEC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B382924DB2ED30004CEC0 /* ContentView.swift */; };
+		817B382C24DB2ED50004CEC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817B382B24DB2ED50004CEC0 /* Assets.xcassets */; };
+		817B382F24DB2ED50004CEC0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817B382E24DB2ED50004CEC0 /* Preview Assets.xcassets */; };
+		817B383224DB2ED50004CEC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817B383024DB2ED50004CEC0 /* Main.storyboard */; };
+		817B383E24DB304C0004CEC0 /* InputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B383D24DB304C0004CEC0 /* InputData.swift */; };
+		817B384024DB312A0004CEC0 /* InputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B383F24DB312A0004CEC0 /* InputViewModel.swift */; };
+		817B384224DB31ED0004CEC0 /* BlockingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B384124DB31ED0004CEC0 /* BlockingViewModel.swift */; };
+		817B384424DB32C90004CEC0 /* TreatmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B384324DB32C90004CEC0 /* TreatmentViewModel.swift */; };
+		817B384624DB388F0004CEC0 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B384524DB388F0004CEC0 /* InputView.swift */; };
+		817B384824DB3B120004CEC0 /* BlockingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B384724DB3B120004CEC0 /* BlockingInputView.swift */; };
+		817B384A24DB3C850004CEC0 /* ErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B384924DB3C850004CEC0 /* ErrorViewModel.swift */; };
+		81ACBA4D24DB679A004C7E65 /* ModelingBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACBA4C24DB679A004C7E65 /* ModelingBrain.swift */; };
+		81ACBA5024DB8E9A004C7E65 /* SigmaSwiftStatistics in Frameworks */ = {isa = PBXBuildFile; productRef = 81ACBA4F24DB8E9A004C7E65 /* SigmaSwiftStatistics */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		817B382424DB2ED30004CEC0 /* Data Modeler for Power Calculations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Data Modeler for Power Calculations.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		817B382724DB2ED30004CEC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		817B382924DB2ED30004CEC0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		817B382B24DB2ED50004CEC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		817B382E24DB2ED50004CEC0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		817B383124DB2ED50004CEC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		817B383324DB2ED50004CEC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		817B383424DB2ED50004CEC0 /* Data_Modeler_for_Power_Calculations.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Data_Modeler_for_Power_Calculations.entitlements; sourceTree = "<group>"; };
+		817B383D24DB304C0004CEC0 /* InputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputData.swift; sourceTree = "<group>"; };
+		817B383F24DB312A0004CEC0 /* InputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewModel.swift; sourceTree = "<group>"; };
+		817B384124DB31ED0004CEC0 /* BlockingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockingViewModel.swift; sourceTree = "<group>"; };
+		817B384324DB32C90004CEC0 /* TreatmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentViewModel.swift; sourceTree = "<group>"; };
+		817B384524DB388F0004CEC0 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		817B384724DB3B120004CEC0 /* BlockingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockingInputView.swift; sourceTree = "<group>"; };
+		817B384924DB3C850004CEC0 /* ErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModel.swift; sourceTree = "<group>"; };
+		81ACBA4C24DB679A004C7E65 /* ModelingBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelingBrain.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		817B382124DB2ED30004CEC0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81ACBA5024DB8E9A004C7E65 /* SigmaSwiftStatistics in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		817B381B24DB2ED30004CEC0 = {
+			isa = PBXGroup;
+			children = (
+				817B382624DB2ED30004CEC0 /* Data Modeler for Power Calculations */,
+				817B382524DB2ED30004CEC0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		817B382524DB2ED30004CEC0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				817B382424DB2ED30004CEC0 /* Data Modeler for Power Calculations.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		817B382624DB2ED30004CEC0 /* Data Modeler for Power Calculations */ = {
+			isa = PBXGroup;
+			children = (
+				817B383C24DB2FB00004CEC0 /* Models */,
+				817B383B24DB2F7C0004CEC0 /* ViewModels */,
+				817B383A24DB2F580004CEC0 /* Views */,
+				817B382724DB2ED30004CEC0 /* AppDelegate.swift */,
+				817B382B24DB2ED50004CEC0 /* Assets.xcassets */,
+				817B383024DB2ED50004CEC0 /* Main.storyboard */,
+				817B383324DB2ED50004CEC0 /* Info.plist */,
+				817B383424DB2ED50004CEC0 /* Data_Modeler_for_Power_Calculations.entitlements */,
+				817B382D24DB2ED50004CEC0 /* Preview Content */,
+			);
+			path = "Data Modeler for Power Calculations";
+			sourceTree = "<group>";
+		};
+		817B382D24DB2ED50004CEC0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				817B382E24DB2ED50004CEC0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		817B383A24DB2F580004CEC0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				817B382924DB2ED30004CEC0 /* ContentView.swift */,
+				817B384524DB388F0004CEC0 /* InputView.swift */,
+				817B384724DB3B120004CEC0 /* BlockingInputView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		817B383B24DB2F7C0004CEC0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				817B383F24DB312A0004CEC0 /* InputViewModel.swift */,
+				817B384124DB31ED0004CEC0 /* BlockingViewModel.swift */,
+				817B384324DB32C90004CEC0 /* TreatmentViewModel.swift */,
+				817B384924DB3C850004CEC0 /* ErrorViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		817B383C24DB2FB00004CEC0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				817B383D24DB304C0004CEC0 /* InputData.swift */,
+				81ACBA4C24DB679A004C7E65 /* ModelingBrain.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		817B382324DB2ED30004CEC0 /* Data Modeler for Power Calculations */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 817B383724DB2ED50004CEC0 /* Build configuration list for PBXNativeTarget "Data Modeler for Power Calculations" */;
+			buildPhases = (
+				817B382024DB2ED30004CEC0 /* Sources */,
+				817B382124DB2ED30004CEC0 /* Frameworks */,
+				817B382224DB2ED30004CEC0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Data Modeler for Power Calculations";
+			packageProductDependencies = (
+				81ACBA4F24DB8E9A004C7E65 /* SigmaSwiftStatistics */,
+			);
+			productName = "Data Modeler for Power Calculations";
+			productReference = 817B382424DB2ED30004CEC0 /* Data Modeler for Power Calculations.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		817B381C24DB2ED30004CEC0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1160;
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = "Peyton Chen";
+				TargetAttributes = {
+					817B382324DB2ED30004CEC0 = {
+						CreatedOnToolsVersion = 11.6;
+					};
+				};
+			};
+			buildConfigurationList = 817B381F24DB2ED30004CEC0 /* Build configuration list for PBXProject "Data Modeler for Power Calculations" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 817B381B24DB2ED30004CEC0;
+			packageReferences = (
+				81ACBA4E24DB8E9A004C7E65 /* XCRemoteSwiftPackageReference "SigmaSwiftStatistics" */,
+			);
+			productRefGroup = 817B382524DB2ED30004CEC0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				817B382324DB2ED30004CEC0 /* Data Modeler for Power Calculations */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		817B382224DB2ED30004CEC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				817B383224DB2ED50004CEC0 /* Main.storyboard in Resources */,
+				817B382F24DB2ED50004CEC0 /* Preview Assets.xcassets in Resources */,
+				817B382C24DB2ED50004CEC0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		817B382024DB2ED30004CEC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				817B384A24DB3C850004CEC0 /* ErrorViewModel.swift in Sources */,
+				817B382A24DB2ED30004CEC0 /* ContentView.swift in Sources */,
+				817B384624DB388F0004CEC0 /* InputView.swift in Sources */,
+				817B382824DB2ED30004CEC0 /* AppDelegate.swift in Sources */,
+				817B383E24DB304C0004CEC0 /* InputData.swift in Sources */,
+				81ACBA4D24DB679A004C7E65 /* ModelingBrain.swift in Sources */,
+				817B384424DB32C90004CEC0 /* TreatmentViewModel.swift in Sources */,
+				817B384224DB31ED0004CEC0 /* BlockingViewModel.swift in Sources */,
+				817B384824DB3B120004CEC0 /* BlockingInputView.swift in Sources */,
+				817B384024DB312A0004CEC0 /* InputViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		817B383024DB2ED50004CEC0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				817B383124DB2ED50004CEC0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		817B383524DB2ED50004CEC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		817B383624DB2ED50004CEC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		817B383824DB2ED50004CEC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Data Modeler for Power Calculations/Data_Modeler_for_Power_Calculations.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Data Modeler for Power Calculations/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Data Modeler for Power Calculations/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.peyton.Data-Modeler-for-Power-Calculations";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		817B383924DB2ED50004CEC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Data Modeler for Power Calculations/Data_Modeler_for_Power_Calculations.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Data Modeler for Power Calculations/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Data Modeler for Power Calculations/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.peyton.Data-Modeler-for-Power-Calculations";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		817B381F24DB2ED30004CEC0 /* Build configuration list for PBXProject "Data Modeler for Power Calculations" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				817B383524DB2ED50004CEC0 /* Debug */,
+				817B383624DB2ED50004CEC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		817B383724DB2ED50004CEC0 /* Build configuration list for PBXNativeTarget "Data Modeler for Power Calculations" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				817B383824DB2ED50004CEC0 /* Debug */,
+				817B383924DB2ED50004CEC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		81ACBA4E24DB8E9A004C7E65 /* XCRemoteSwiftPackageReference "SigmaSwiftStatistics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/SigmaSwiftStatistics.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		81ACBA4F24DB8E9A004C7E65 /* SigmaSwiftStatistics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81ACBA4E24DB8E9A004C7E65 /* XCRemoteSwiftPackageReference "SigmaSwiftStatistics" */;
+			productName = SigmaSwiftStatistics;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 817B381C24DB2ED30004CEC0 /* Project object */;
+}
