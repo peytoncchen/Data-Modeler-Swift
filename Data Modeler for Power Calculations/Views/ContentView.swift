@@ -64,13 +64,10 @@ struct ContentView: View {
                         InputView(item: self.treatmentViewModel.items[index], itemValue: self.treatmentViewModel.binding(for: index))
                     }
                     Button(action: {
-                        self.modelingViewModel.blockText = ""
-                        self.modelingViewModel.prepareBlockErrorText(errorArray: self.errorViewModel.items, blockingArray: self.blockingViewModel.items)
+                        self.modelingViewModel.prepareBlockErrorTextAndArray(errorArray: self.errorViewModel.items, blockingArray: self.blockingViewModel.items, numDV: Int(self.inputViewModel.items[0].value) ?? 0)
                         self.distributeViewModel.items.removeAll()
                         self.distributeViewModel.addLines(inputArray: self.inputViewModel.items, blockingArray: self.blockingViewModel.items)
                         self.labelShown = true
-                        print(self.modelingViewModel.errorBlockArray)
-                        print(self.blockingViewModel.items)
                     }) {
                         Text("Continue")
                 }
@@ -93,20 +90,21 @@ struct ContentView: View {
                     ForEach(self.blockingViewModel.items.indices, id: \.self) { index in
                         Text(self.blockingViewModel.items[index].label).padding(.trailing)
                     }
+                    Text(inputViewModel.items[4].value)
                     Spacer()
                         .frame(width: 15.0)
                 }.opacity(labelShown ? 1 : 0)
                 ScrollView {
                     ForEach(self.distributeViewModel.items.indices, id: \.self) { index in
-                        GridView(input: self.distributeViewModel.items[index], assignTNum: self.distributeViewModel.bindingTN(for: index), assignBArray: self.distributeViewModel.bindingBF(for: index))
+                        GridView(input: self.distributeViewModel.items[index],  assignTNum: self.distributeViewModel.bindingTN(for: index), assignBArray: self.distributeViewModel.bindingBF(for: index))
                     }
-                }
-                Spacer()
+                }.padding(.bottom)
                 Button(action: {
-                    print(self.distributeViewModel.items)
+                    self.modelingViewModel.prepareDVTextAndArray(assignArray: self.distributeViewModel.items, treatmentArray: self.treatmentViewModel.items, errorArray: self.errorViewModel.items)
+                    self.distributeViewModel.addDV(dvArray: self.modelingViewModel.dvArray)
                 }) {
-                    Text("Test")
-                }
+                    Text("Fingers crossed test")
+                }.opacity(labelShown ? 1 : 0)
                 Text(modelingViewModel.blockText)
                 Spacer()
             }

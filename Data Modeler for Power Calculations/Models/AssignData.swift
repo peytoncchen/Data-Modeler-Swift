@@ -13,4 +13,5 @@ struct AssignData: Identifiable {
     var subjectNum: Int
     var treatmentNum: String
     var blockFacs: [String]
+    var dvVal: String
 }

@@ -19,6 +19,7 @@ struct GridView: View {
             ForEach(self.input.blockFacs.indices, id: \.self) { index in
                 TextField("Enter value", text: self.$assignBArray[index]).frame(width: 75.0)
             }
+            Text(input.dvVal)
         }
     }
 }

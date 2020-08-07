@@ -19,9 +19,15 @@ class DistributeViewModel: ObservableObject {
             assignBlockArray.append("")
         }
         for i in 0..<total {
-            self.items.append(AssignData(id: i, subjectNum: i + 1, treatmentNum: "", blockFacs: assignBlockArray))
+            self.items.append(AssignData(id: i, subjectNum: i + 1, treatmentNum: "", blockFacs: assignBlockArray, dvVal: ""))
         }
 
+    }
+    
+    func addDV(dvArray: [String]) {
+        for i in 0..<dvArray.count {
+            self.items[i].dvVal = dvArray[i]
+        }
     }
     
     func bindingTN(for index: Int) -> Binding<String> {

@@ -11,12 +11,17 @@ import SigmaSwiftStatistics
 
 class ModelingViewModel: ObservableObject{
     @Published var blockText: String = ""
+    var dvArray: [String] = []
     var errorBlockArray = [[Double]]()
+    var fullArray = [[String]]()
+    private var tMeanArray = [Double]()
     
-    func prepareBlockErrorText(errorArray: [InputData], blockingArray: [InputData]) {
+    func prepareBlockErrorTextAndArray(errorArray: [InputData], blockingArray: [InputData], numDV: Int) {
         if errorArray.count != blockingArray.count + 1 {
             fatalError("Bad Input")
         }
+        blockText.removeAll()
+        errorBlockArray.removeAll()
         
         for _ in 0..<blockingArray.count {
             let empty = [Double]()
@@ -24,19 +29,40 @@ class ModelingViewModel: ObservableObject{
         }
         
         for i in 1..<errorArray.count {
-            let temp = addErrorTextAndArray(errorData: errorArray[i], num: Int(blockingArray[i - 1].value) ?? 0, errorNum: i - 1) + "\n"
-            blockText += temp
+            let str = addErrorTextAndArray(errorData: errorArray[i], num: Int(blockingArray[i - 1].value) ?? 0, errorNum: i - 1) + "\n"
+            blockText += str
         }
     }
     
-    private func addDVLine(assignData: AssignData, inputData: InputData, treatmentData: InputData, totalError: Double) -> [String] {
+    func prepareDVTextAndArray(assignArray: [AssignData], treatmentArray: [InputData], errorArray: [InputData]) {
+        guard let totalError = Double(errorArray[0].value) else {return}
+
+        tMeanArray.removeAll()
+        fullArray.removeAll()
+        dvArray.removeAll()
+        
+        for i in 0..<treatmentArray.count {
+            guard let mean = Double(treatmentArray[i].value) else {return}
+            tMeanArray.append(mean)
+        }
+
+        for i in 0..<assignArray.count {
+            let array = addDVLine(assignData: assignArray[i], meanArray: tMeanArray, totalError: totalError)
+            fullArray.append(array)
+            let dvStr = array[array.count - 1]
+            dvArray.append(dvStr)
+        }
+    }
+    
+    
+    private func addDVLine(assignData: AssignData, meanArray: [Double], totalError: Double) -> [String] {
         var array = [String]()
         var dvVal = 0.0
         guard let treatmentNum = Int(assignData.treatmentNum) else {return array}
         array.append(String(assignData.subjectNum))
         array.append(String(treatmentNum))
-        guard let treatmentMean = Double(treatmentData.value) else {return array}
-        dvVal += treatmentMean
+        let tMean = meanArray[treatmentNum - 1]
+        dvVal += tMean
         
         let rand = Double.random(in: 0...1)
         if let n = Sigma.normalQuantile(p: rand, μ: 0, σ: totalError) {
@@ -46,8 +72,9 @@ class ModelingViewModel: ObservableObject{
         for i in 0..<assignData.blockFacs.count {
             guard let blockFacNum = Int(assignData.blockFacs[i]) else {return array}
             array.append(String(blockFacNum))
-            dvVal += errorBlockArray[i][blockFacNum]
+            dvVal += errorBlockArray[i][blockFacNum - 1]
         }
+        array.append(String(format: "%.4f", dvVal))
         return array
         
     }
@@ -70,7 +97,7 @@ class ModelingViewModel: ObservableObject{
         let doubleArray = errorVals(count: num, sd: stddev)
         
         for i in 0..<doubleArray.count {
-            let rounded = String(format: "%.6f", doubleArray[i]) + "\n"
+            let rounded = String(format: "%.4f", doubleArray[i]) + "\n"
             str += rounded
             errorBlockArray[errorNum].append(doubleArray[i])
         }
