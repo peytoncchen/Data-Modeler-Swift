@@ -13,7 +13,7 @@ class ErrorViewModel: ObservableObject {
     
     func addErrors(array: [InputData]) {
         for i in 0..<array.count {
-            self.items.append(InputData(id: i + 1, label: array[i].label, value: ""))
+            self.items.append(InputData(id: i + 1, label: array[i].label + " SD:", value: ""))
         }
     }
     

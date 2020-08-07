@@ -14,9 +14,12 @@ struct ContentView: View {
     @ObservedObject var blockingViewModel = BlockingViewModel()
     @ObservedObject var errorViewModel = ErrorViewModel()
     @ObservedObject var modelingViewModel = ModelingViewModel()
+    @ObservedObject var distributeViewModel = DistributeViewModel()
+    @State var labelShown = false
     
     var body: some View {
         HStack {
+            Spacer()
             VStack {
                 VStack {
                     Text("Step 1: Enter inputs:")
@@ -60,24 +63,52 @@ struct ContentView: View {
                     ForEach(self.treatmentViewModel.items.indices, id: \.self) { index in
                         InputView(item: self.treatmentViewModel.items[index], itemValue: self.treatmentViewModel.binding(for: index))
                     }
+                    Button(action: {
+                        self.modelingViewModel.blockText = ""
+                        self.modelingViewModel.prepareBlockErrorText(errorArray: self.errorViewModel.items, blockingArray: self.blockingViewModel.items)
+                        self.distributeViewModel.items.removeAll()
+                        self.distributeViewModel.addLines(inputArray: self.inputViewModel.items, blockingArray: self.blockingViewModel.items)
+                        self.labelShown = true
+                    }) {
+                        Text("Continue")
                 }
                 Divider().frame(width: 350.0).background(Color.black)
                 VStack {
-                    Text("Step 5: Choose options:")
-                    Button(action: {
-                        print(self.inputViewModel.items)
-                        print(self.blockingViewModel.items)
-                        print(self.errorViewModel.items)
-                        print(self.treatmentViewModel.items)
-                        self.modelingViewModel.prepareBlockErrorText(errorArray: self.errorViewModel.items, blockingArray: self.blockingViewModel.items)
-                        
-                    }) {
-                        Text("Go!")
+                    Text("Step 5: Distribute groups ->")
                     }
+                    
                 }
             }
+            Spacer()
             Divider().background(Color.black)
-            Text(modelingViewModel.blockText)
+            Spacer()
+            VStack {
+                Spacer()
+                HStack {
+                    Text(inputViewModel.items[3].value)
+                    Text("Treatment")
+                        .padding(.trailing)
+                    ForEach(self.blockingViewModel.items.indices, id: \.self) { index in
+                        Text(self.blockingViewModel.items[index].label).padding(.trailing)
+                    }
+                    Spacer()
+                        .frame(width: 15.0)
+                }.opacity(labelShown ? 1 : 0)
+                ScrollView {
+                    ForEach(self.distributeViewModel.items.indices, id: \.self) { index in
+                        GridView(input: self.distributeViewModel.items[index], assignTNum: self.distributeViewModel.bindingTN(for: index), assignBArray: self.distributeViewModel.bindingBF(for: index))
+                    }
+                }
+                Spacer()
+                Button(action: {
+                    print(self.distributeViewModel.items)
+                }) {
+                    Text("Test")
+                }
+                Text(modelingViewModel.blockText)
+                Spacer()
+            }
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
