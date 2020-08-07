@@ -69,6 +69,8 @@ struct ContentView: View {
                         self.distributeViewModel.items.removeAll()
                         self.distributeViewModel.addLines(inputArray: self.inputViewModel.items, blockingArray: self.blockingViewModel.items)
                         self.labelShown = true
+                        print(self.modelingViewModel.errorBlockArray)
+                        print(self.blockingViewModel.items)
                     }) {
                         Text("Continue")
                 }
