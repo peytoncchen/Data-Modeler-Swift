@@ -11,6 +11,7 @@ import Foundation
 class TextDataManager {
     
     private var textString = ""
+    private var SASString = ""
     
     func processArray(array: [[String]]) {
         textString.removeAll()
@@ -19,18 +20,42 @@ class TextDataManager {
             textString.append("\n")
         }
     }
+    
+    func implementSAS(array: [[String]], experimentName eName: String) {
+        SASString.removeAll()
+        var data = ""
+        var blockNames = ""
+        let names = array[0]
+        
+        for i in 2..<names.count - 1 {
+            let fName = " " + names[i]
+            blockNames += fName
+        }
+        
+        for i in 1..<array.count {
+            data.append(array[i].joined(separator: " "))
+            data.append("\n")
+        }
+        
+        
+        SASString = "DATA \(eName); INPUT \(names[0]) Treatment\(blockNames) \(names[names.count - 1]); Lines;\n\n\(data)\n;\nRUN;\n\nPROC MIXED ASYCOV NOBOUND DATA=\(eName) ALPHA=0.05;\nCLASS Treatment\(blockNames);\nMODEL \(names[names.count - 1]) = Treatment\(blockNames)\n/SOLUTION DDFM=KENWARDROGER;\nlsmeans Treatment / adjust=tukey;\nRUN;"
+        
+    }
 
     
 
-    func writeToFile(name file: String) {
+    func writeToFile(name file: String, SAS choice: Bool) {
         let filename = file
+        var outString = ""
         
         let url = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first
-            
-//            try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 
         if let fileURL = url?.appendingPathComponent(filename).appendingPathExtension("txt") {
-            let outString = textString
+            if choice == false {
+                outString = textString
+            } else {
+                outString = SASString
+            }
             
             do {
                 try outString.write(to: fileURL, atomically: true, encoding: .utf8)

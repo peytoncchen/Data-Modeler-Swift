@@ -38,7 +38,6 @@ class ModelingViewModel: ObservableObject{
         guard let totalError = Double(errorArray[0].value) else {return}
 
         tMeanArray.removeAll()
-        fullArray.removeAll()
         dvArray.removeAll()
         
         for i in 0..<treatmentArray.count {
@@ -55,6 +54,7 @@ class ModelingViewModel: ObservableObject{
     }
     
     func prepareTextFile(subName: String, blockArray: [InputData], dvName: String) {
+        fullArray.removeAll()
         var adding = [String]()
         adding.append(subName)
         adding.append("Treatment")

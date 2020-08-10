@@ -17,7 +17,8 @@ struct ContentView: View {
     @ObservedObject var distributeViewModel = DistributeViewModel()
     var textDataManager = TextDataManager()
     @State var labelShown = false
-    @State var exportShown = false
+    @State var exportTxtShown = false
+    @State var exportSASShown = false
     
     var body: some View {
         HStack {
@@ -41,9 +42,12 @@ struct ContentView: View {
                 Divider().frame(width: 350.0).background(Color.black)
                 VStack {
                     Text("Step 2: Enter blocking factor labels and values (if applicable):")
-                    ForEach(self.blockingViewModel.items.indices, id: \.self) { index in
-                        BlockingInputView(itemName: self.blockingViewModel.bindingName(for: index), itemValue: self.blockingViewModel.bindingVal(for: index))
+                    ScrollView {
+                        ForEach(self.blockingViewModel.items.indices, id: \.self) { index in
+                            BlockingInputView(itemName: self.blockingViewModel.bindingName(for: index), itemValue: self.blockingViewModel.bindingVal(for: index))
+                        }
                     }
+                    .frame(height: 50.0)
                     Button(action: {
                         self.errorViewModel.items.removeAll()
                         self.errorViewModel.items.append(InputData(id: 0, label: "Total Error SD:", value: ""))
@@ -55,16 +59,22 @@ struct ContentView: View {
                 Divider().frame(width: 350.0).background(Color.black)
                 VStack {
                     Text("Step 3: Enter errors:")
-                    ForEach(self.errorViewModel.items.indices, id: \.self) { index in
-                        InputView(item: self.errorViewModel.items[index], itemValue: self.errorViewModel.binding(for: index))
+                    ScrollView {
+                        ForEach(self.errorViewModel.items.indices, id: \.self) { index in
+                            InputView(item: self.errorViewModel.items[index], itemValue: self.errorViewModel.binding(for: index))
+                        }
                     }
+                    .frame(height: 50.0)
                 }
                 Divider().frame(width: 350.0).background(Color.black)
                 VStack {
                     Text("Step 4: Enter treatment means:")
-                    ForEach(self.treatmentViewModel.items.indices, id: \.self) { index in
-                        InputView(item: self.treatmentViewModel.items[index], itemValue: self.treatmentViewModel.binding(for: index))
+                    ScrollView {
+                        ForEach(self.treatmentViewModel.items.indices, id: \.self) { index in
+                            InputView(item: self.treatmentViewModel.items[index], itemValue: self.treatmentViewModel.binding(for: index))
+                        }
                     }
+                    .frame(height: 50.0)
                     Button(action: {
                         self.modelingViewModel.prepareBlockErrorTextAndArray(errorArray: self.errorViewModel.items, blockingArray: self.blockingViewModel.items, numDV: Int(self.inputViewModel.items[0].value) ?? 0)
                         self.distributeViewModel.items.removeAll()
@@ -102,9 +112,10 @@ struct ContentView: View {
                     }
                 }.padding(.bottom)
                 Button(action: {
+                    self.modelingViewModel.prepareTextFile(subName: self.inputViewModel.items[3].value, blockArray: self.blockingViewModel.items, dvName: self.inputViewModel.items[4].value)
                     self.modelingViewModel.prepareDVTextAndArray(assignArray: self.distributeViewModel.items, treatmentArray: self.treatmentViewModel.items, errorArray: self.errorViewModel.items)
                     self.distributeViewModel.addDV(dvArray: self.modelingViewModel.dvArray)
-                    self.exportShown = true
+                    self.exportTxtShown = true
                 }) {
                     Text("Generate Dependent Variable Values!")
                 }
@@ -112,14 +123,23 @@ struct ContentView: View {
                     .opacity(labelShown ? 1 : 0)
                 
                 Button(action: {
-                    self.modelingViewModel.prepareTextFile(subName: self.inputViewModel.items[3].value, blockArray: self.blockingViewModel.items, dvName: self.inputViewModel.items[4].value)
                     self.textDataManager.processArray(array: self.modelingViewModel.fullArray)
-                    self.textDataManager.writeToFile(name: "Test")
+                    self.textDataManager.writeToFile(name: "Test", SAS: false)
+                    self.exportSASShown = true
                 }) {
                     Text("Export to text file")
                 }
                     .padding(.bottom)
-                    .opacity(exportShown ? 1 : 0)
+                    .opacity(exportTxtShown ? 1 : 0)
+                
+                Button(action: {
+                    self.textDataManager.implementSAS(array: self.modelingViewModel.fullArray, experimentName: "TextExperiment")
+                    self.textDataManager.writeToFile(name: "TestSAS", SAS: true)
+                }) {
+                    Text("Export SAS to text file")
+                }
+                    .padding(.bottom)
+                    .opacity(exportSASShown ? 1 : 0)
                 
                 Text(modelingViewModel.blockText)
                 Spacer()
