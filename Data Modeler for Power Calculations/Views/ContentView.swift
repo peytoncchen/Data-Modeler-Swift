@@ -15,7 +15,9 @@ struct ContentView: View {
     @ObservedObject var errorViewModel = ErrorViewModel()
     @ObservedObject var modelingViewModel = ModelingViewModel()
     @ObservedObject var distributeViewModel = DistributeViewModel()
+    var textDataManager = TextDataManager()
     @State var labelShown = false
+    @State var exportShown = false
     
     var body: some View {
         HStack {
@@ -33,7 +35,7 @@ struct ContentView: View {
                         self.blockingViewModel.addBlocking(count: Int(self.inputViewModel.items[2].value) ?? 0)
                         
                     }) {
-                        Text(/*@START_MENU_TOKEN@*/"Continue"/*@END_MENU_TOKEN@*/)
+                        Text("Continue")
                     }
                 }
                 Divider().frame(width: 350.0).background(Color.black)
@@ -47,7 +49,7 @@ struct ContentView: View {
                         self.errorViewModel.items.append(InputData(id: 0, label: "Total Error SD:", value: ""))
                         self.errorViewModel.addErrors(array: self.blockingViewModel.items)
                     }) {
-                        Text(/*@START_MENU_TOKEN@*/"Continue"/*@END_MENU_TOKEN@*/)
+                        Text("Continue")
                     }
                 }
                 Divider().frame(width: 350.0).background(Color.black)
@@ -102,9 +104,23 @@ struct ContentView: View {
                 Button(action: {
                     self.modelingViewModel.prepareDVTextAndArray(assignArray: self.distributeViewModel.items, treatmentArray: self.treatmentViewModel.items, errorArray: self.errorViewModel.items)
                     self.distributeViewModel.addDV(dvArray: self.modelingViewModel.dvArray)
+                    self.exportShown = true
                 }) {
-                    Text("Fingers crossed test")
-                }.opacity(labelShown ? 1 : 0)
+                    Text("Generate Dependent Variable Values!")
+                }
+                    .padding(.bottom)
+                    .opacity(labelShown ? 1 : 0)
+                
+                Button(action: {
+                    self.modelingViewModel.prepareTextFile(subName: self.inputViewModel.items[3].value, blockArray: self.blockingViewModel.items, dvName: self.inputViewModel.items[4].value)
+                    self.textDataManager.processArray(array: self.modelingViewModel.fullArray)
+                    self.textDataManager.writeToFile(name: "Test")
+                }) {
+                    Text("Export to text file")
+                }
+                    .padding(.bottom)
+                    .opacity(exportShown ? 1 : 0)
+                
                 Text(modelingViewModel.blockText)
                 Spacer()
             }

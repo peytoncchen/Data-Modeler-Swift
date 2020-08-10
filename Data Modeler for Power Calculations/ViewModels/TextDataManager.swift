@@ -13,6 +13,7 @@ class TextDataManager {
     private var textString = ""
     
     func processArray(array: [[String]]) {
+        textString.removeAll()
         for i in 0..<array.count {
             textString.append(array[i].joined(separator: " "))
             textString.append("\n")
@@ -23,10 +24,12 @@ class TextDataManager {
 
     func writeToFile(name file: String) {
         let filename = file
+        
+        let url = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first
+            
+//            try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 
-        let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-
-        if let fileURL = dir?.appendingPathComponent(filename).appendingPathExtension("txt") {
+        if let fileURL = url?.appendingPathComponent(filename).appendingPathExtension("txt") {
             let outString = textString
             
             do {

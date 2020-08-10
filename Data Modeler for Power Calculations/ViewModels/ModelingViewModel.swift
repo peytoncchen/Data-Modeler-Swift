@@ -54,6 +54,16 @@ class ModelingViewModel: ObservableObject{
         }
     }
     
+    func prepareTextFile(subName: String, blockArray: [InputData], dvName: String) {
+        var adding = [String]()
+        adding.append(subName)
+        adding.append("Treatment")
+        for factor in blockArray {
+            adding.append(factor.label)
+        }
+        adding.append(dvName)
+        fullArray.append(adding)
+    }
     
     private func addDVLine(assignData: AssignData, meanArray: [Double], totalError: Double) -> [String] {
         var array = [String]()
