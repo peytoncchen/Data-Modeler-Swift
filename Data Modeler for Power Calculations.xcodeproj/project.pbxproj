@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		811A7A1424DBCC200097ED39 /* ModelingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A7A1324DBCC200097ED39 /* ModelingViewModel.swift */; };
+		816B2B7C24DCBAC20096C235 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B2B7B24DCBAC20096C235 /* GridView.swift */; };
+		816B2B7E24DCBE7C0096C235 /* AssignData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B2B7D24DCBE7C0096C235 /* AssignData.swift */; };
+		816B2B8024DD08C40096C235 /* DistributeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B2B7F24DD08C40096C235 /* DistributeViewModel.swift */; };
+		816B2B8224DD20BF0096C235 /* TextDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B2B8124DD20BF0096C235 /* TextDataManager.swift */; };
 		817B382824DB2ED30004CEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B382724DB2ED30004CEC0 /* AppDelegate.swift */; };
 		817B382A24DB2ED30004CEC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B382924DB2ED30004CEC0 /* ContentView.swift */; };
 		817B382C24DB2ED50004CEC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817B382B24DB2ED50004CEC0 /* Assets.xcassets */; };
@@ -19,11 +24,15 @@
 		817B384624DB388F0004CEC0 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B384524DB388F0004CEC0 /* InputView.swift */; };
 		817B384824DB3B120004CEC0 /* BlockingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B384724DB3B120004CEC0 /* BlockingInputView.swift */; };
 		817B384A24DB3C850004CEC0 /* ErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B384924DB3C850004CEC0 /* ErrorViewModel.swift */; };
-		81ACBA4D24DB679A004C7E65 /* ModelingBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ACBA4C24DB679A004C7E65 /* ModelingBrain.swift */; };
 		81ACBA5024DB8E9A004C7E65 /* SigmaSwiftStatistics in Frameworks */ = {isa = PBXBuildFile; productRef = 81ACBA4F24DB8E9A004C7E65 /* SigmaSwiftStatistics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		811A7A1324DBCC200097ED39 /* ModelingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelingViewModel.swift; sourceTree = "<group>"; };
+		816B2B7B24DCBAC20096C235 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		816B2B7D24DCBE7C0096C235 /* AssignData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignData.swift; sourceTree = "<group>"; };
+		816B2B7F24DD08C40096C235 /* DistributeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributeViewModel.swift; sourceTree = "<group>"; };
+		816B2B8124DD20BF0096C235 /* TextDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDataManager.swift; sourceTree = "<group>"; };
 		817B382424DB2ED30004CEC0 /* Data Modeler for Power Calculations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Data Modeler for Power Calculations.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		817B382724DB2ED30004CEC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		817B382924DB2ED30004CEC0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -39,7 +48,6 @@
 		817B384524DB388F0004CEC0 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		817B384724DB3B120004CEC0 /* BlockingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockingInputView.swift; sourceTree = "<group>"; };
 		817B384924DB3C850004CEC0 /* ErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModel.swift; sourceTree = "<group>"; };
-		81ACBA4C24DB679A004C7E65 /* ModelingBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelingBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +108,7 @@
 				817B382924DB2ED30004CEC0 /* ContentView.swift */,
 				817B384524DB388F0004CEC0 /* InputView.swift */,
 				817B384724DB3B120004CEC0 /* BlockingInputView.swift */,
+				816B2B7B24DCBAC20096C235 /* GridView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,9 +117,12 @@
 			isa = PBXGroup;
 			children = (
 				817B383F24DB312A0004CEC0 /* InputViewModel.swift */,
+				816B2B8124DD20BF0096C235 /* TextDataManager.swift */,
 				817B384124DB31ED0004CEC0 /* BlockingViewModel.swift */,
 				817B384324DB32C90004CEC0 /* TreatmentViewModel.swift */,
 				817B384924DB3C850004CEC0 /* ErrorViewModel.swift */,
+				811A7A1324DBCC200097ED39 /* ModelingViewModel.swift */,
+				816B2B7F24DD08C40096C235 /* DistributeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -119,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				817B383D24DB304C0004CEC0 /* InputData.swift */,
-				81ACBA4C24DB679A004C7E65 /* ModelingBrain.swift */,
+				816B2B7D24DCBE7C0096C235 /* AssignData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -205,12 +217,16 @@
 				817B382A24DB2ED30004CEC0 /* ContentView.swift in Sources */,
 				817B384624DB388F0004CEC0 /* InputView.swift in Sources */,
 				817B382824DB2ED30004CEC0 /* AppDelegate.swift in Sources */,
+				816B2B8224DD20BF0096C235 /* TextDataManager.swift in Sources */,
 				817B383E24DB304C0004CEC0 /* InputData.swift in Sources */,
-				81ACBA4D24DB679A004C7E65 /* ModelingBrain.swift in Sources */,
+				816B2B7C24DCBAC20096C235 /* GridView.swift in Sources */,
+				816B2B8024DD08C40096C235 /* DistributeViewModel.swift in Sources */,
+				816B2B7E24DCBE7C0096C235 /* AssignData.swift in Sources */,
 				817B384424DB32C90004CEC0 /* TreatmentViewModel.swift in Sources */,
 				817B384224DB31ED0004CEC0 /* BlockingViewModel.swift in Sources */,
 				817B384824DB3B120004CEC0 /* BlockingInputView.swift in Sources */,
 				817B384024DB312A0004CEC0 /* InputViewModel.swift in Sources */,
+				811A7A1424DBCC200097ED39 /* ModelingViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Data Modeler for Power Calculations/Preview Content\"";
+				DEVELOPMENT_TEAM = 36VU5S4SGY;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Data Modeler for Power Calculations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -370,6 +387,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Data Modeler for Power Calculations/Preview Content\"";
+				DEVELOPMENT_TEAM = 36VU5S4SGY;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Data Modeler for Power Calculations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

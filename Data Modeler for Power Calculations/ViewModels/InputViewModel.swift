@@ -19,7 +19,8 @@ class InputViewModel: ObservableObject {
         self.items.append(InputData(id: 0, label: "Total measurements:", value: ""))
         self.items.append(InputData(id: 1, label: "Number of treatments:", value: ""))
         self.items.append(InputData(id: 2, label: "Number of blocking factors:", value: ""))
-        self.items.append(InputData(id: 3, label: "Name of animal model:", value: ""))
+        self.items.append(InputData(id: 3, label: "Name of subjects:", value: ""))
+        self.items.append(InputData(id: 4, label: "Dependent variable name:", value: ""))
     }
     
     func binding(for index: Int) -> Binding<String> {
