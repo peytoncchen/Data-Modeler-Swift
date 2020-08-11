@@ -1,5 +1,5 @@
 # datamodeler
-Calculator designed with SwiftUI to generate mock data models for power calculations. Used to aid experimental design. Can be used in conjunction with SAS for power calculations.
+Interactive GUI calculator designed with SwiftUI and Swift to generate mock data models to aid in experimental design and predict power. Can be used in conjunction with SAS statistical software for power calculations. Developed under the mentorship of Caitlin Maikawa as part of 2020 Summer Research Experience in the Appel Lab @ Stanford Dept. of Bioengineering.
 
 Usage guidelines--
 Warnings will display in red and any calculations/views to be generated will be halted if input is unrecognized.
