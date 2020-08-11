@@ -19,8 +19,8 @@ class TextDataManager {
                 textString.append(array[j][i].joined(separator: " "))
                 textString.append("\n")
             }
+            textString.append("\n\n")
         }
-        textString.append("\n\n\n")
     }
     
     func multiSAS(array: [[[String]]], experimentName eName: String) {
@@ -70,16 +70,16 @@ class TextDataManager {
                 print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
             }
             
-            var inString = ""
-            
-            do {
-                inString = try String(contentsOf: fileURL)
-            } catch {
-                print("Failed reading from URL: \(fileURL), Error: " + error.localizedDescription)
-            }
-            
-            print("Read from file: \(inString)")
-            print(fileURL)
+//            var inString = ""
+//
+//            do {
+//                inString = try String(contentsOf: fileURL)
+//            } catch {
+//                print("Failed reading from URL: \(fileURL), Error: " + error.localizedDescription)
+//            }
+//
+//            print("Read from file: \(inString)")
+//            print(fileURL)
         }
     }
 }

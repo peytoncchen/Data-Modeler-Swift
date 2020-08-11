@@ -16,7 +16,7 @@ struct InputView: View {
         HStack {
             Text(item.label)
             TextField("Enter value", text: $itemValue)
-                .frame(width: 75.0)
+                .frame(width: 100.0)
         }
     }
 }

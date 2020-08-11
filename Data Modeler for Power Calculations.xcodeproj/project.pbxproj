@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810CE34D24E26961004745EB /* WarningsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810CE34C24E26961004745EB /* WarningsManager.swift */; };
 		811A7A1424DBCC200097ED39 /* ModelingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811A7A1324DBCC200097ED39 /* ModelingViewModel.swift */; };
 		816B2B7C24DCBAC20096C235 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B2B7B24DCBAC20096C235 /* GridView.swift */; };
 		816B2B7E24DCBE7C0096C235 /* AssignData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B2B7D24DCBE7C0096C235 /* AssignData.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		810CE34C24E26961004745EB /* WarningsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsManager.swift; sourceTree = "<group>"; };
 		811A7A1324DBCC200097ED39 /* ModelingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelingViewModel.swift; sourceTree = "<group>"; };
 		816B2B7B24DCBAC20096C235 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		816B2B7D24DCBE7C0096C235 /* AssignData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignData.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				817B384924DB3C850004CEC0 /* ErrorViewModel.swift */,
 				811A7A1324DBCC200097ED39 /* ModelingViewModel.swift */,
 				816B2B7F24DD08C40096C235 /* DistributeViewModel.swift */,
+				810CE34C24E26961004745EB /* WarningsManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				816B2B7C24DCBAC20096C235 /* GridView.swift in Sources */,
 				816B2B8024DD08C40096C235 /* DistributeViewModel.swift in Sources */,
 				816B2B7E24DCBE7C0096C235 /* AssignData.swift in Sources */,
+				810CE34D24E26961004745EB /* WarningsManager.swift in Sources */,
 				817B384424DB32C90004CEC0 /* TreatmentViewModel.swift in Sources */,
 				817B384224DB31ED0004CEC0 /* BlockingViewModel.swift in Sources */,
 				817B384824DB3B120004CEC0 /* BlockingInputView.swift in Sources */,
