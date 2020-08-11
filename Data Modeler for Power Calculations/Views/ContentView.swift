@@ -19,6 +19,7 @@ struct ContentView: View {
     @State var labelShown = false
     @State var exportTxtShown = false
     @State var exportSASShown = false
+    @State var numGenTimes = 1
     
     var body: some View {
         HStack {
@@ -112,19 +113,37 @@ struct ContentView: View {
                     }
                 }.padding(.bottom)
                 Button(action: {
+                    self.textDataManager.textString.removeAll()
+                    self.textDataManager.SASString.removeAll()
                     self.modelingViewModel.prepareTextFile(subName: self.inputViewModel.items[3].value, blockArray: self.blockingViewModel.items, dvName: self.inputViewModel.items[4].value)
                     self.modelingViewModel.prepareDVTextAndArray(assignArray: self.distributeViewModel.items, treatmentArray: self.treatmentViewModel.items, errorArray: self.errorViewModel.items)
                     self.distributeViewModel.addDV(dvArray: self.modelingViewModel.dvArray)
                     self.exportTxtShown = true
+                    self.exportSASShown = true
+                    self.numGenTimes = 1
                 }) {
-                    Text("Generate Dependent Variable Values!")
+                    Text("Reset/Generate Dependent Variable Values")
                 }
                     .padding(.bottom)
                     .opacity(labelShown ? 1 : 0)
                 
+                HStack {
+                    Button(action: {
+                        self.modelingViewModel.prepareTextFile(subName: self.inputViewModel.items[3].value, blockArray: self.blockingViewModel.items, dvName: self.inputViewModel.items[4].value)
+                        self.modelingViewModel.prepareDVTextAndArray(assignArray: self.distributeViewModel.items, treatmentArray: self.treatmentViewModel.items, errorArray: self.errorViewModel.items)
+                        self.distributeViewModel.addDV(dvArray: self.modelingViewModel.dvArray)
+                        self.numGenTimes += 1
+                    }) {
+                        Text("Add run")
+                    }
+                    Text("Current run count: \(String(numGenTimes))")
+                }
+                    .padding(.bottom)
+                    .opacity(exportTxtShown ? 1 : 0)
+                
                 Button(action: {
-                    self.textDataManager.processArray(array: self.modelingViewModel.fullArray)
-                    self.textDataManager.writeToFile(name: "Test", SAS: false)
+                    self.textDataManager.processArray(array: self.modelingViewModel.multipleRunArray)
+                    self.textDataManager.writeToFile(name: "Coformulation2", SAS: false)
                     self.exportSASShown = true
                 }) {
                     Text("Export to text file")
@@ -133,8 +152,8 @@ struct ContentView: View {
                     .opacity(exportTxtShown ? 1 : 0)
                 
                 Button(action: {
-                    self.textDataManager.implementSAS(array: self.modelingViewModel.fullArray, experimentName: "TextExperiment")
-                    self.textDataManager.writeToFile(name: "TestSAS", SAS: true)
+                    self.textDataManager.multiSAS(array: self.modelingViewModel.multipleRunArray, experimentName: "Coformulation2SAS")
+                    self.textDataManager.writeToFile(name: "Coformulation2SAS", SAS: true)
                 }) {
                     Text("Export SAS to text file")
                 }

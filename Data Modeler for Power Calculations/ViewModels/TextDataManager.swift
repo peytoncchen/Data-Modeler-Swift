@@ -10,19 +10,26 @@ import Foundation
 
 class TextDataManager {
     
-    private var textString = ""
-    private var SASString = ""
+    var textString = ""
+    var SASString = ""
     
-    func processArray(array: [[String]]) {
-        textString.removeAll()
-        for i in 0..<array.count {
-            textString.append(array[i].joined(separator: " "))
-            textString.append("\n")
+    func processArray(array: [[[String]]]) {
+        for j in 0..<array.count {
+            for i in 0..<array[j].count {
+                textString.append(array[j][i].joined(separator: " "))
+                textString.append("\n")
+            }
+        }
+        textString.append("\n\n\n")
+    }
+    
+    func multiSAS(array: [[[String]]], experimentName eName: String) {
+        for sub in array {
+            implementSAS(array: sub, experimentName: eName)
         }
     }
     
-    func implementSAS(array: [[String]], experimentName eName: String) {
-        SASString.removeAll()
+    private func implementSAS(array: [[String]], experimentName eName: String) {
         var data = ""
         var blockNames = ""
         let names = array[0]
@@ -38,7 +45,7 @@ class TextDataManager {
         }
         
         
-        SASString = "DATA \(eName); INPUT \(names[0]) Treatment\(blockNames) \(names[names.count - 1]); Lines;\n\n\(data)\n;\nRUN;\n\nPROC MIXED ASYCOV NOBOUND DATA=\(eName) ALPHA=0.05;\nCLASS Treatment\(blockNames);\nMODEL \(names[names.count - 1]) = Treatment\(blockNames)\n/SOLUTION DDFM=KENWARDROGER;\nlsmeans Treatment / adjust=tukey;\nRUN;"
+        SASString.append("DATA \(eName); INPUT \(names[0]) Treatment\(blockNames) \(names[names.count - 1]); Lines;\n\n\(data)\n;\nRUN;\n\nPROC MIXED ASYCOV NOBOUND DATA=\(eName) ALPHA=0.05;\nCLASS Treatment\(blockNames);\nMODEL \(names[names.count - 1]) = Treatment\(blockNames)\n/SOLUTION DDFM=KENWARDROGER;\nlsmeans Treatment / adjust=tukey;\nRUN;\n\n\n")
         
     }
 

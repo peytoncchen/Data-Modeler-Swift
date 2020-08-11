@@ -14,6 +14,7 @@ class ModelingViewModel: ObservableObject{
     var dvArray: [String] = []
     var errorBlockArray = [[Double]]()
     var fullArray = [[String]]()
+    var multipleRunArray = [[[String]]]()
     private var tMeanArray = [Double]()
     
     func prepareBlockErrorTextAndArray(errorArray: [InputData], blockingArray: [InputData], numDV: Int) {
@@ -51,6 +52,7 @@ class ModelingViewModel: ObservableObject{
             let dvStr = array[array.count - 1]
             dvArray.append(dvStr)
         }
+        multipleRunArray.append(fullArray)
     }
     
     func prepareTextFile(subName: String, blockArray: [InputData], dvName: String) {
