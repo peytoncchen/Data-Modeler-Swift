@@ -18,9 +18,11 @@ struct ContentView: View {
     @ObservedObject var warningsManager = WarningsManger()
     var textDataManager = TextDataManager()
     @State var labelShown = false
-    @State var exportTxtShown = false
-    @State var exportSASShown = false
+    @State var exportShown = false
     @State var numGenTimes = 1
+    @State var textFileName = "DataExport"
+    @State var SASFileName = "SASExport"
+    @State var SASExperimentName = "ExperimentName"
     
     var body: some View {
         HStack {
@@ -35,8 +37,6 @@ struct ContentView: View {
                         if self.warningsManager.gen1Warnings(inputs: self.inputViewModel.items) {
                             return
                         } else {
-                            self.treatmentViewModel.items.removeAll()
-                            self.blockingViewModel.items.removeAll()
                             self.treatmentViewModel.addTreatments(count: Int(self.inputViewModel.items[1].value)!)
                             self.blockingViewModel.addBlocking(count: Int(self.inputViewModel.items[2].value)!)
                         }
@@ -61,13 +61,11 @@ struct ContentView: View {
                             BlockingInputView(itemName: self.blockingViewModel.bindingName(for: index), itemValue: self.blockingViewModel.bindingVal(for: index))
                         }
                     }
-                    .frame(height: 40.0)
+                        .frame(height: 40.0)
                     Button(action: {
                         if self.warningsManager.gen2Warnings(bInputs: self.blockingViewModel.items) {
                             return
                         } else {
-                            self.errorViewModel.items.removeAll()
-                            self.errorViewModel.items.append(InputData(id: 0, label: "Total Error SD:", value: ""))
                             self.errorViewModel.addErrors(array: self.blockingViewModel.items)
                         }
                     }) {
@@ -84,7 +82,7 @@ struct ContentView: View {
                             InputView(item: self.errorViewModel.items[index], itemValue: self.errorViewModel.binding(for: index))
                         }
                     }
-                    .frame(height: 70.0)
+                        .frame(height: 70.0)
                 }
                 Divider().frame(width: 350.0).background(Color.black)
                 VStack {
@@ -94,15 +92,15 @@ struct ContentView: View {
                             InputView(item: self.treatmentViewModel.items[index], itemValue: self.treatmentViewModel.binding(for: index))
                         }
                     }
-                    .frame(height: 70.0)
+                        .frame(height: 70.0)
                     HStack {
                         Button(action: {
                             if self.warningsManager.gen3And4Warnings(eInputs: self.errorViewModel.items, tInputs: self.treatmentViewModel.items) {
                                 return
                             } else {
-                                self.modelingViewModel.prepareBlockErrorTextAndArray(errorArray: self.errorViewModel.items, blockingArray: self.blockingViewModel.items, numDV: Int(self.inputViewModel.items[0].value) ?? 0)
-                                self.distributeViewModel.items.removeAll()
+                                self.modelingViewModel.prepareBlockErrorTextAndArray(errorArray: self.errorViewModel.items, blockingArray: self.blockingViewModel.items, numDV: Int(self.inputViewModel.items[0].value)!)
                                 self.distributeViewModel.addLines(inputArray: self.inputViewModel.items, blockingArray: self.blockingViewModel.items)
+                                self.modelingViewModel.displaytMean(tArray: self.treatmentViewModel.items)
                                 self.labelShown = true
                             }
                         }) {
@@ -114,7 +112,8 @@ struct ContentView: View {
                                     return
                                 } else {
                                     self.modelingViewModel.prepareBlockErrorTextAndArray(errorArray: self.errorViewModel.items, blockingArray: self.blockingViewModel.items, numDV: Int(self.inputViewModel.items[0].value)!)
-                                    self.labelShown = true
+                                    self.modelingViewModel.displaytMean(tArray: self.treatmentViewModel.items)
+                                    self.exportShown = false
                                 }
                             }) {
                                 Text("Update Error/Treatment Means")
@@ -142,7 +141,9 @@ struct ContentView: View {
                         ForEach(self.blockingViewModel.items.indices, id: \.self) { index in
                             Text(self.blockingViewModel.items[index].label).padding(.trailing)
                         }
-                        Text(inputViewModel.items[4].value)
+                        if exportShown {
+                            Text(inputViewModel.items[4].value)
+                        }
                         Spacer()
                             .frame(width: 15.0)
                     }
@@ -156,14 +157,11 @@ struct ContentView: View {
                     if self.warningsManager.gen5Warnings(aInputs: self.distributeViewModel.items, oneInputs: self.inputViewModel.items, bInputs: self.blockingViewModel.items) {
                         return
                     } else {
-                        self.textDataManager.textString.removeAll()
-                        self.textDataManager.SASString.removeAll()
                         self.modelingViewModel.multipleRunArray.removeAll()
                         self.modelingViewModel.prepareTextFile(subName: self.inputViewModel.items[3].value, blockArray: self.blockingViewModel.items, dvName: self.inputViewModel.items[4].value)
                         self.modelingViewModel.prepareDVTextAndArray(assignArray: self.distributeViewModel.items, treatmentArray: self.treatmentViewModel.items, errorArray: self.errorViewModel.items)
                         self.distributeViewModel.addDV(dvArray: self.modelingViewModel.dvArray)
-                        self.exportTxtShown = true
-                        self.exportSASShown = true
+                        self.exportShown = true
                         self.numGenTimes = 1
                     }
                 }) {
@@ -188,31 +186,56 @@ struct ContentView: View {
                     Text("Current run count: \(String(numGenTimes))")
                 }
                     .padding(.bottom)
-                    .opacity(exportTxtShown ? 1 : 0)
-                
-                Button(action: {
-                    self.textDataManager.processArray(array: self.modelingViewModel.multipleRunArray)
-                    self.textDataManager.writeToFile(name: "Coformulation2", SAS: false)
-                    self.exportSASShown = true
-                }) {
-                    Text("Export to text file")
+                    .opacity(exportShown ? 1 : 0)
+                HStack {
+                    Text("Enter Text File Name:")
+                    TextField("File Name", text: $textFileName)
+                        .frame(width: 125.0)
+                    Button(action: {
+                        if self.textFileName == "" {
+                            self.textFileName = "DataExport"
+                        }
+                        self.textDataManager.processArray(array: self.modelingViewModel.multipleRunArray)
+                        self.textDataManager.writeToFile(name: self.textFileName, SAS: false)
+                    }) {
+                        Text("Export run(s) to text file")
+                    }
                 }
                     .padding(.bottom)
-                    .opacity(exportTxtShown ? 1 : 0)
+                    .opacity(exportShown ? 1 : 0)
                 
-                Button(action: {
-                    self.textDataManager.multiSAS(array: self.modelingViewModel.multipleRunArray, experimentName: "Coformulation2SAS")
-                    self.textDataManager.writeToFile(name: "Coformulation2SAS", SAS: true)
-                }) {
-                    Text("Export SAS to text file")
+                HStack {
+                    Text("Enter SAS File Name and Experiment Name:")
+                    VStack {
+                        TextField("SAS File Name", text: $SASFileName)
+                        TextField("Experiment Name", text: $SASExperimentName)
+                    }
+                        .frame(width: 125.0)
+                    Button(action: {
+                        if self.SASFileName == "" {
+                            self.SASFileName = "SASExport"
+                        }
+                        if self.SASExperimentName == "" {
+                            self.SASExperimentName = "ExperimentName"
+                        }
+                        self.textDataManager.multiSAS(array: self.modelingViewModel.multipleRunArray, experimentName: self.SASExperimentName)
+                        self.textDataManager.writeToFile(name: self.SASFileName, SAS: true)
+                    }) {
+                        Text("Export SAS run(s) to text file")
+                    }
                 }
                     .padding(.bottom)
-                    .opacity(exportSASShown ? 1 : 0)
-                ScrollView {
-                    Text(modelingViewModel.blockText)
+                    .opacity(exportShown ? 1 : 0)
+                HStack {
+                    ScrollView {
+                        Text(modelingViewModel.blockText)
+                    }
+                    ScrollView {
+                        Text(modelingViewModel.treatmentText)
+                    }
                 }
-                .frame(height: 200.0)
-                Spacer()
+                .padding(.bottom)
+                    .frame(height: 200.0)
             }
             Spacer()
         }

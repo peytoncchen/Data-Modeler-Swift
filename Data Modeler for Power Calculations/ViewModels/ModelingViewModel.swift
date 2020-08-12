@@ -11,6 +11,7 @@ import SigmaSwiftStatistics
 
 class ModelingViewModel: ObservableObject{
     @Published var blockText: String = ""
+    @Published var treatmentText: String = ""
     var dvArray: [String] = []
     var errorBlockArray = [[Double]]()
     var fullArray = [[String]]()
@@ -18,9 +19,6 @@ class ModelingViewModel: ObservableObject{
     private var tMeanArray = [Double]()
     
     func prepareBlockErrorTextAndArray(errorArray: [InputData], blockingArray: [InputData], numDV: Int) {
-        if errorArray.count != blockingArray.count + 1 {
-            fatalError("Bad Input")
-        }
         blockText.removeAll()
         errorBlockArray.removeAll()
         
@@ -30,8 +28,17 @@ class ModelingViewModel: ObservableObject{
         }
         
         for i in 1..<errorArray.count {
-            let str = addErrorTextAndArray(errorData: errorArray[i], num: Int(blockingArray[i - 1].value) ?? 0, errorNum: i - 1) + "\n"
+            let str = addErrorTextAndArray(errorData: errorArray[i], num: Int(blockingArray[i - 1].value)!, errorNum: i - 1) + "\n"
             blockText += str
+        }
+    }
+    
+    func displaytMean(tArray: [InputData]) {
+        treatmentText.removeAll()
+        treatmentText.append("Treatment Means:\n")
+        for i in 0..<tArray.count {
+            treatmentText.append("\(String(i + 1)): ")
+            treatmentText.append("\(tArray[i].value)\n")
         }
     }
     
@@ -91,11 +98,11 @@ class ModelingViewModel: ObservableObject{
         
     }
     
-    private func errorVals(count: Int, sd: Float) -> [Double] {
+    private func errorVals(count: Int, sd: Double) -> [Double] {
         var array = [Double]()
         for _ in 0..<count {
             let rand = Double.random(in: 0...1)
-            if let n = Sigma.normalQuantile(p: rand, μ: 0, σ: Double(sd)) {
+            if let n = Sigma.normalQuantile(p: rand, μ: 0, σ: sd) {
                 array.append(n)
             }
         }
@@ -103,12 +110,15 @@ class ModelingViewModel: ObservableObject{
     }
     
     private func addErrorTextAndArray(errorData: InputData, num: Int, errorNum: Int) -> String {
-        var str = errorData.label + " generated error:\n"
-        let stddev = Float(errorData.value) ?? 0.0
+        var str = errorData.label
+        str.removeLast()
+        str += " generated error:\n"
+        let stddev = Double(errorData.value)!
         
         let doubleArray = errorVals(count: num, sd: stddev)
         
         for i in 0..<doubleArray.count {
+            str += "\(i + 1): "
             let rounded = String(format: "%.4f", doubleArray[i]) + "\n"
             str += rounded
             errorBlockArray[errorNum].append(doubleArray[i])

@@ -12,13 +12,12 @@ class DistributeViewModel: ObservableObject {
     @Published var items:[AssignData] = []
     
     func addLines(inputArray: [InputData], blockingArray: [InputData]) {
-        guard let total = Int(inputArray[0].value) else {return}
-        let numBlocks = blockingArray.count
+        self.items.removeAll()
         var assignBlockArray = [String]()
-        for _ in 0..<numBlocks {
+        for _ in 0..<blockingArray.count {
             assignBlockArray.append("")
         }
-        for i in 0..<total {
+        for i in 0..<Int(inputArray[0].value)! {
             self.items.append(AssignData(id: i, subjectNum: i + 1, treatmentNum: "", blockFacs: assignBlockArray, dvVal: ""))
         }
 

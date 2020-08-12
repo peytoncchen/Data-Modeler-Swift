@@ -17,6 +17,7 @@ class TreatmentViewModel: ObservableObject {
     }
     
     func addTreatments(count: Int) {
+        self.items.removeAll()
         for i in 0..<count {
             self.items.append(InputData(id: i, label: String(i + 1), value: ""))
         }

@@ -28,7 +28,9 @@ Enter the associated error SD values for the overall experiment and between each
 Step 4 Notes:
 Enter the treatment means for each treatment. These must be decimal or integer values.
 
-If you update the error or treatment values after generating the grid and are not changing the total measurements, number of blocking factors, or number of treatments, click the update error/treatment values button. On the bottom half of right hand side, you should see newly generated error values and treatment values to be reflected.
+If you update the error or treatment values after generating the grid and are not changing the total measurements, number of blocking factors, or number of treatments, click the update error/treatment values button. On the bottom half of right hand side, you should see newly generated error values and treatment values to be reflected. Note, even if you only update the treatment, new errors will still be generated if you press this button.
+
+
 
 
 Step 5 Notes:
@@ -46,5 +48,7 @@ Export to text file - Press this to export text files to downloads folder. Can e
 
 Export SAS to text file - Press this to export a SAS output to downloads folder. Can export multiple runs (will just be multiple SAS outputs concatenated together. This is still compatible with the SAS software and can be used for better power calculations.)
 
+Note: Default value for experiment name is "ExperimentName". Default value for text file name is "DataExport". Default value for SAS text file is "SASExport".
 
+Caution: If you use a file name that exists already in the downloads directory, the program will overwrite everything in that file. Choose another name if you don't want the data to be overwritten.
 

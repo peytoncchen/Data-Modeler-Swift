@@ -10,10 +10,11 @@ import Foundation
 
 class TextDataManager {
     
-    var textString = ""
-    var SASString = ""
+    private var textString = ""
+    private var SASString = ""
     
     func processArray(array: [[[String]]]) {
+        self.textString.removeAll()
         for j in 0..<array.count {
             for i in 0..<array[j].count {
                 textString.append(array[j][i].joined(separator: " "))
@@ -24,6 +25,7 @@ class TextDataManager {
     }
     
     func multiSAS(array: [[[String]]], experimentName eName: String) {
+        self.SASString.removeAll()
         for sub in array {
             implementSAS(array: sub, experimentName: eName)
         }
@@ -69,7 +71,7 @@ class TextDataManager {
             } catch {
                 print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
             }
-            
+//The following was for testing purposes
 //            var inString = ""
 //
 //            do {

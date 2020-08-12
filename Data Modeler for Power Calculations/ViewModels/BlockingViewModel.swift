@@ -12,6 +12,7 @@ class BlockingViewModel: ObservableObject {
     @Published var items:[InputData] = []
     
     func addBlocking(count: Int) {
+        self.items.removeAll()
         for i in 0..<count {
             self.items.append(InputData(id: i, label: "", value: ""))
         }

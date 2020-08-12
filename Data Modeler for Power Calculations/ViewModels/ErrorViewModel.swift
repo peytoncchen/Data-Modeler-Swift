@@ -12,6 +12,8 @@ class ErrorViewModel: ObservableObject {
     @Published var items:[InputData] = [InputData(id: 0, label: "Total Error SD:", value: "")]
     
     func addErrors(array: [InputData]) {
+        self.items.removeAll()
+        self.items.append(InputData(id: 0, label: "Total Error SD:", value: ""))
         for i in 0..<array.count {
             self.items.append(InputData(id: i + 1, label: array[i].label + " SD:", value: ""))
         }
