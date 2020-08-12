@@ -20,9 +20,7 @@ struct ContentView: View {
     @State var labelShown = false
     @State var exportShown = false
     @State var numGenTimes = 1
-    @State var textFileName = "DataExport"
-    @State var SASFileName = "SASExport"
-    @State var SASExperimentName = "ExperimentName"
+    @State var SASExperimentName = ""
     
     var body: some View {
         HStack {
@@ -104,7 +102,7 @@ struct ContentView: View {
                                 self.labelShown = true
                             }
                         }) {
-                            Text("Continue")
+                            Text("Continue/Reset")
                         }
                         if labelShown {
                             Button(action: {
@@ -187,39 +185,52 @@ struct ContentView: View {
                 }
                     .padding(.bottom)
                     .opacity(exportShown ? 1 : 0)
-                HStack {
-                    Text("Enter Text File Name:")
-                    TextField("File Name", text: $textFileName)
-                        .frame(width: 125.0)
-                    Button(action: {
-                        if self.textFileName == "" {
-                            self.textFileName = "DataExport"
+                
+                Button(action: {
+                    let savePanel = NSSavePanel()
+                    savePanel.canCreateDirectories = true
+                    savePanel.title = "Choose save location of file"
+                    savePanel.nameFieldLabel = "Save as filename:"
+                    savePanel.showsTagField = false
+                    savePanel.allowedFileTypes = ["txt"]
+                    savePanel.begin { result -> Void in
+                        if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
+                            let selectedPath = savePanel.url
+                            if let fileURL = selectedPath {
+                                self.textDataManager.processArray(array: self.modelingViewModel.multipleRunArray)
+                                self.textDataManager.writeToFile(SAS: false, url: fileURL)
+                            }
                         }
-                        self.textDataManager.processArray(array: self.modelingViewModel.multipleRunArray)
-                        self.textDataManager.writeToFile(name: self.textFileName, SAS: false)
-                    }) {
-                        Text("Export run(s) to text file")
                     }
+                }) {
+                    Text("Export run(s) to text file")
                 }
                     .padding(.bottom)
                     .opacity(exportShown ? 1 : 0)
                 
                 HStack {
-                    Text("Enter SAS File Name and Experiment Name:")
-                    VStack {
-                        TextField("SAS File Name", text: $SASFileName)
-                        TextField("Experiment Name", text: $SASExperimentName)
-                    }
+                    Text("Enter Experiment Name:")
+                    TextField("Experiment Name", text: $SASExperimentName)
                         .frame(width: 125.0)
                     Button(action: {
-                        if self.SASFileName == "" {
-                            self.SASFileName = "SASExport"
-                        }
                         if self.SASExperimentName == "" {
-                            self.SASExperimentName = "ExperimentName"
+                            self.SASExperimentName = "UntitledExperiment"
                         }
-                        self.textDataManager.multiSAS(array: self.modelingViewModel.multipleRunArray, experimentName: self.SASExperimentName)
-                        self.textDataManager.writeToFile(name: self.SASFileName, SAS: true)
+                        let savePanel = NSSavePanel()
+                        savePanel.canCreateDirectories = true
+                        savePanel.title = "Choose save location of file"
+                        savePanel.nameFieldLabel = "Save as filename:"
+                        savePanel.showsTagField = false
+                        savePanel.allowedFileTypes = ["txt"]
+                        savePanel.begin { result -> Void in
+                            if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
+                                let selectedPath = savePanel.url
+                                if let fileURL = selectedPath {
+                                    self.textDataManager.multiSAS(array: self.modelingViewModel.multipleRunArray, experimentName: self.SASExperimentName)
+                                    self.textDataManager.writeToFile(SAS: true, url: fileURL)
+                                }
+                            }
+                        }
                     }) {
                         Text("Export SAS run(s) to text file")
                     }

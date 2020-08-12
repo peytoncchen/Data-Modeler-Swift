@@ -53,24 +53,26 @@ class TextDataManager {
 
     
 
-    func writeToFile(name file: String, SAS choice: Bool) {
-        let filename = file
+    func writeToFile(SAS choice: Bool, url: URL) {
+        let fileURL = url
         var outString = ""
-        
-        let url = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first
 
-        if let fileURL = url?.appendingPathComponent(filename).appendingPathExtension("txt") {
-            if choice == false {
-                outString = textString
-            } else {
-                outString = SASString
-            }
-            
-            do {
-                try outString.write(to: fileURL, atomically: true, encoding: .utf8)
-            } catch {
-                print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
-            }
+        if choice == false {
+            outString = textString
+        } else {
+            outString = SASString
+        }
+        
+        do {
+            try outString.write(to: fileURL, atomically: true, encoding: .utf8)
+        } catch {
+            print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
+        }
+    }
+
+}
+
+
 //The following was for testing purposes
 //            var inString = ""
 //
@@ -82,7 +84,3 @@ class TextDataManager {
 //
 //            print("Read from file: \(inString)")
 //            print(fileURL)
-        }
-    }
-}
-
