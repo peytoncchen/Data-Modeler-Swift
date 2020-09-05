@@ -43,7 +43,7 @@ class WarningsManger: ObservableObject {
     func gen2Warnings(bInputs: [InputData]) -> Bool {
         step2Warnings.removeAll()
         for input in bInputs {
-            guard !input.value.contains(" ") else {
+            guard !input.label.contains(" ") else {
                 step2Warnings.append("Labels must be one word (no spaces) to ensure compatability with SAS")
                 return true
             }
